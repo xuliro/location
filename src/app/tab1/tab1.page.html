@@ -1,17 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-card style="text-align: center; color: black; background-color: lightsteelblue;">    
+    <ion-card-header style="background-color: darkblue;">
+      <ion-card-title style="color: white;">Localização Atual</ion-card-title>            
+    </ion-card-header>
+    <div *ngIf="isCheckIn == true">
+      <br>
+      <ion-label><b>PLACA: {{placa}}</b></ion-label><br>      
+    </div>    
+    <br>
+    <ion-label>Latitude: {{lat}}</ion-label><br>
+    <ion-label>Longitude: {{lon}}</ion-label><br>    
+    <ion-label>Altitude: {{alt}}</ion-label><br>
+    <ion-label>Velocidade: {{vel}}</ion-label><br>
+    <ion-label>Direção: {{hea}}</ion-label><br>
+    <div  *ngIf="isCheckIn == true">
+      <br>
+      <ion-label>Última Atualização: {{data.getDay()}}/{{data.getMonth()}}/{{data.getYear()+1900}} {{data.getHours()}}:{{data.getMinutes()}}</ion-label><br>
+      <ion-label>Nível da bateria: {{battery}}%</ion-label><ion-label *ngIf="plugged == true"> (carregando...)</ion-label>
+      <br>
+    </div>
+    <br>
+  </ion-card>
+  <ion-card>
+    <ion-label>PLACA</ion-label>
+    <ion-input [(ngModel)]="placa" (ngModelChange)="placa = $event.toLocaleUpperCase(); $errorMessage = true;" style="width: 100%; text-align: center;" displayFormat="LLLNNNN"></ion-input>
+    <div style="text-align: center; color: red;" *ngIf="errorMessage == true">      
+      <ion-label>Placa inválida / Veículo não encontrado</ion-label>
+    </div>
+  </ion-card>
+  <ion-card>
+    <ion-button (click)="checkIn()" color="success" expand="full" *ngIf="isCheckIn == false"> CheckIn</ion-button>
+    <ion-button (click)="checkOut()" color="danger" expand="full" *ngIf="isCheckIn == true">CheckOut</ion-button>
+  </ion-card> 
+  <br>
+  <br>
+  <br>
+  <ion-card>
+    <ion-button (click)="sair()" color="dark" expand="full">Sair</ion-button>   
+  </ion-card>   
 </ion-content>
