@@ -1,24 +1,24 @@
 <ion-content [fullscreen]="true" style="text-align: center;">
-  <!--
+ 
   <ion-card style="text-align: center; align-items: center;">
     <ion-card-header style="background-color: darkgreen;">
       <ion-card-title style="color: white;">Bateria</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <br>
-      <ion-title size="large" style="text-align: center; color: black;">Nível: {{battery}}%</ion-title>
+      <ion-label style="text-align: center; color: black;">Nível: {{battery}}%</ion-label><br>
       <ion-label *ngIf="plugged == true">
-        <ion-icon name="battery-charging" style="font-size: 150px; color: darkblue;"></ion-icon>
+        <ion-icon name="battery-charging" style="font-size: 50px; color: darkblue;"></ion-icon>
         <br>Carregando...
       </ion-label>
       <ion-label *ngIf="plugged == false">
-          <ion-icon name="battery-full" *ngIf="battery >= 75" style="font-size: 150px; color: darkgreen;"></ion-icon> 
-          <ion-icon name="battery-dead" *ngIf="battery <= 25"  style="font-size: 150px; color: darkgoldenrod;"></ion-icon> 
-          <ion-icon name="battery-half" *ngIf="battery < 75 && battery > 25" style="font-size: 150px; color: darkred;"></ion-icon>
+          <ion-icon name="battery-full" *ngIf="battery >= 75" style="font-size: 50px; color: darkgreen;"></ion-icon> 
+          <ion-icon name="battery-dead" *ngIf="battery <= 25"  style="font-size: 50px; color: darkgoldenrod;"></ion-icon> 
+          <ion-icon name="battery-half" *ngIf="battery < 75 && battery > 25" style="font-size: 50px; color: darkred;"></ion-icon>
       </ion-label>
     </ion-card-content>    
   </ion-card> 
-  --> 
+ 
   <div>
     <svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
       <g>

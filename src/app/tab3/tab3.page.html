@@ -1,15 +1,36 @@
-<ion-content>
-  <ion-card style="text-align: center; color: black;">
-    <!--
-    <ion-card-header style="background-color: black;">
-      <ion-card-title style="color: white;">Sair</ion-card-title>
-    </ion-card-header>
-  </ion-card>  
-  <br>
-  <br>
-  <ion-card>
-    <ion-button (click)="sair()" style="width: 100%;">Sair</ion-button>
-    <br>
+<ion-content [fullscreen]="true"><div scrollY="true">
+  <ion-card style="text-align: center; color: black; background-color: lightcoral;" *ngIf="pos != undefined">    
+    <ion-card-header style="background-color: darkred;">
+      <ion-label style="color: white;">Localização Atual</ion-label>            
+    </ion-card-header>   
+    <ion-label>{{pos.desc}}</ion-label><br>
+    <ion-label>Lat: {{pos.lat.toFixed(6)}} | Lon: {{pos.lon.toFixed(6)}}</ion-label><br>
+    <ion-label>Distancia: {{(minDistance*1000).toFixed(2)}} metros</ion-label><br>
+    <ion-label>Atualizado em {{data.getDay()}}/{{data.getMonth()}}/{{data.getYear()+1900}} {{data.getHours()}}:{{data.getMinutes()}}:{{data.getSeconds()}}</ion-label><br>
   </ion-card>
-  -->
-</ion-content>
+  <ion-card style="text-align: center; color: black; background-color: lightseagreen;" *ngIf="trajetoArray.length > 0">    
+    <ion-card-header style="background-color: darkgreen;">
+      <ion-label style="color: white;">Trajeto</ion-label>            
+    </ion-card-header>   
+    <div *ngFor="let point of trajetoArray; let x = index">      
+      <br>
+      <ion-label><b>{{x+1}}) {{point.desc}}</b></ion-label><br>
+      <ion-label>Lat: {{point.lat.toFixed(6)}} | Lon: {{point.lon.toFixed(6)}}</ion-label><br>    
+      <ion-label>Data: {{point.data.getDay()}}/{{point.data.getMonth()}}/{{point.data.getYear()+1900}} {{point.data.getHours()}}:{{point.data.getMinutes()}}:{{point.data.getSeconds()}}</ion-label><br>
+    </div>
+  </ion-card>
+  <div *ngFor="let pos of positionsArray ; let x = index">
+  <ion-card style="text-align: center; color: black; background-color: lightsteelblue;" *ngIf="x > 6">    
+    <ion-card-header style="background-color: darkblue;">
+      <ion-label style="color: white;">{{pos.desc}}</ion-label>
+    </ion-card-header>    
+    <ion-label>Lat: {{pos.lat.toFixed(6)}} | Lon: {{pos.lon.toFixed(6)}}</ion-label><br>        
+  </ion-card>
+  </div>
+  <ion-card>    
+  <ion-input placeholder="Localização atual" clearInput [(ngModel)]="desc" (ngModelChange)="desc = $event.toLocaleUpperCase();"></ion-input>
+  <ion-button (click)="send()" color="success" expand="full">Marcar Posição</ion-button>
+  <ion-button (click)="clear()" color="danger" expand="full">Limpar Pontos</ion-button>
+  <ion-button (click)="clearT()" color="primary" expand="full">Limpar Trajeto</ion-button>
+  </ion-card>
+</div></ion-content>

@@ -31,7 +31,7 @@ import { HTTP } from '@ionic-native/http/ngx';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  private static url: string = "187.20.153.178";
+  private static url: string = "187.20.183.162";
   //private static url: string = "192.168.0.16";
   static getUrl(){
     return this.url;

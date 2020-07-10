@@ -16,7 +16,7 @@ export class Tab2Page {
   get(uf){
     console.log(uf);
   }
-  /*
+  
   battery = 100;
   plugged = false;
  
@@ -37,5 +37,5 @@ export class Tab2Page {
     setInterval(() => {
       this.changeDetector.detectChanges();
     }, 60000);
-  }*/
+  }
 }
