@@ -10,13 +10,16 @@
   </ion-card>
   <ion-card style="text-align: center; color: black; background-color: lightseagreen;" *ngIf="trajetoArray.length > 0">    
     <ion-card-header style="background-color: darkgreen;">
-      <ion-label style="color: white;">Trajeto</ion-label>            
+      <ion-label style="color: white;"><b>Trajeto</b></ion-label><br>
+      <ion-label style="color: white;">Inicio: {{startTime.getDay()}}/{{startTime.getMonth()}}/{{startTime.getYear()+1900}} {{startTime.getHours()}}:{{startTime.getMinutes()}}:{{startTime.getSeconds()}}</ion-label><br>
+      <ion-label style="color: white;">Duração: {{duration}}</ion-label>
     </ion-card-header>   
     <div *ngFor="let point of trajetoArray; let x = index">      
       <br>
       <ion-label><b>{{x+1}}) {{point.desc}}</b></ion-label><br>
       <ion-label>Lat: {{point.lat.toFixed(6)}} | Lon: {{point.lon.toFixed(6)}}</ion-label><br>    
-      <ion-label>Data: {{point.data.getDay()}}/{{point.data.getMonth()}}/{{point.data.getYear()+1900}} {{point.data.getHours()}}:{{point.data.getMinutes()}}:{{point.data.getSeconds()}}</ion-label><br>
+      <ion-label>Inicio: {{point.data.getDay()}}/{{point.data.getMonth()}}/{{point.data.getYear()+1900}} {{point.data.getHours()}}:{{point.data.getMinutes()}}:{{point.data.getSeconds()}}</ion-label><br>
+      <ion-label>Duração: {{point.duration}}</ion-label><br>
     </div>
   </ion-card>
   <div *ngFor="let pos of positionsArray ; let x = index">
