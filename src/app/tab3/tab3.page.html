@@ -6,20 +6,25 @@
     <ion-label>{{pos.desc}}</ion-label><br>
     <ion-label>Lat: {{pos.lat.toFixed(6)}} | Lon: {{pos.lon.toFixed(6)}}</ion-label><br>
     <ion-label>Distancia: {{(minDistance*1000).toFixed(2)}} metros</ion-label><br>
-    <ion-label>Atualizado em {{data.getDay()}}/{{data.getMonth()}}/{{data.getYear()+1900}} {{data.getHours()}}:{{data.getMinutes()}}:{{data.getSeconds()}}</ion-label><br>
+    <ion-label>Atualizado em {{begin.getDay()}}/{{begin.getMonth()}}/{{begin.getYear()+1900}} {{miliToTimeStr(begin, true)}}</ion-label><br>
   </ion-card>
   <ion-card style="text-align: center; color: black; background-color: lightseagreen;" *ngIf="trajetoArray.length > 0">    
     <ion-card-header style="background-color: darkgreen;">
       <ion-label style="color: white;"><b>Trajeto</b></ion-label><br>
-      <ion-label style="color: white;">Inicio: {{startTime.getDay()}}/{{startTime.getMonth()}}/{{startTime.getYear()+1900}} {{startTime.getHours()}}:{{startTime.getMinutes()}}:{{startTime.getSeconds()}}</ion-label><br>
+      <ion-label style="color: white;">Inicio: {{startTime.getDay()}}/{{startTime.getMonth()}}/{{startTime.getYear()+1900}} {{miliToTimeStr(startTime, true)}}</ion-label><br>      
       <ion-label style="color: white;">Duração: {{duration}}</ion-label>
     </ion-card-header>   
     <div *ngFor="let point of trajetoArray; let x = index">      
       <br>
       <ion-label><b>{{x+1}}) {{point.desc}}</b></ion-label><br>
-      <ion-label>Lat: {{point.lat.toFixed(6)}} | Lon: {{point.lon.toFixed(6)}}</ion-label><br>    
-      <ion-label>Inicio: {{point.data.getDay()}}/{{point.data.getMonth()}}/{{point.data.getYear()+1900}} {{point.data.getHours()}}:{{point.data.getMinutes()}}:{{point.data.getSeconds()}}</ion-label><br>
-      <ion-label>Duração: {{point.duration}}</ion-label><br>
+      <ion-label>Lat: {{point.lat.toFixed(6)}} | Lon: {{point.lon.toFixed(6)}}</ion-label><br>          
+      <ion-label>Inicio: {{point.begin.getDay()}}/{{point.begin.getMonth()}}/{{point.begin.getYear()+1900}} {{miliToTimeStr(point.begin, true)}}</ion-label><br>
+      <ion-label>Fim: {{point.end.getDay()}}/{{point.end.getMonth()}}/{{point.end.getYear()+1900}} {{miliToTimeStr(point.end, true)}}</ion-label><br>
+      <ion-label>Duração: {{miliToTimeStr(point.end - point.begin, false)}}</ion-label><br>
+      <div *ngIf="x < trajetoArray.length - 1">
+      <br><ion-label><i><b>Trajeto {{point.desc}} -> {{trajetoArray[x+1].desc}}</b></i></ion-label><br>
+      <ion-label>Duração: {{miliToTimeStr(trajetoArray[x+1].begin - point.end, false)}}</ion-label>
+      </div>
     </div>
   </ion-card>
   <div *ngFor="let pos of positionsArray ; let x = index">
